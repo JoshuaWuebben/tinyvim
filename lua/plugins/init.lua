@@ -3,9 +3,23 @@ return {
 
   { "nvim-tree/nvim-web-devicons", opts = {} },
   { "echasnovski/mini.statusline", opts = {} },
-  { "lewis6991/gitsigns.nvim", opts = {} },
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = {
+      current_line_blame = true,
+      current_line_blame_opts = {
+        delay = 500,
+        virt_text_pos = "eol",
+      },
+      on_attach = function(bufnr)
+        local gs = package.loaded.gitsigns
+        vim.keymap.set("n", "<leader>gb", gs.blame_line, { buffer = bufnr, desc = "Blame line (full)" })
+        vim.keymap.set("n", "<leader>gB", gs.toggle_current_line_blame, { buffer = bufnr, desc = "Toggle inline blame" })
+      end,
+    },
+  },
 
-  "EdenEast/nightfox.nvim",
+  "ellisonleao/gruvbox.nvim",
 
   {
     "nvim-tree/nvim-tree.lua",
@@ -83,6 +97,42 @@ return {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
     opts = require "plugins.configs.telescope",
+  },
+
+  -- which-key: show keybinding hints
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    config = function()
+      require "plugins.configs.whichkey"
+    end,
+  },
+
+  -- clangd extensions: inlay hints, enhanced hover, etc.
+  {
+    "p00f/clangd_extensions.nvim",
+    ft = { "c", "cpp", "objc", "objcpp", "cuda" },
+    config = function()
+      require("clangd_extensions").setup {
+        inlay_hints = {
+          inline = true,
+          only_current_line = false,
+          show_parameter_hints = true,
+          parameter_hints_prefix = "← ",
+          other_hints_prefix = "» ",
+        },
+        ast = {
+          role_icons = {
+            type = "",
+            declaration = "",
+            expression = "",
+            specifier = "",
+            statement = "",
+            ["template argument"] = "",
+          },
+        },
+      }
+    end,
   },
 
 }

@@ -15,6 +15,9 @@ map("n", "<leader>fo", "<cmd> Telescope oldfiles <CR>")
 map("n", "<leader>fw", "<cmd> Telescope live_grep <CR>")
 map("n", "<leader>gt", "<cmd> Telescope git_status <CR>")
 
+-- ctrl+p for find files
+map("n", "<C-p>", "<cmd> Telescope find_files <CR>")
+
 -- bufferline, cycle buffers
 map("n", "<Tab>", "<cmd> BufferLineCycleNext <CR>")
 map("n", "<S-Tab>", "<cmd> BufferLineCyclePrev <CR>")
@@ -28,3 +31,5 @@ map("v", "<leader>/", "gc", { remap = true })
 map("n", "<leader>fm", function()
   require("conform").format()
 end)
+
+map('n', '<Esc>', '<cmd>nohlsearch<CR>')
