@@ -33,3 +33,6 @@ map("n", "<leader>fm", function()
 end)
 
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
+-- markview
+map("n", "<leader>mv", "<cmd> Markview toggle <CR>", { desc = "Toggle markview" })

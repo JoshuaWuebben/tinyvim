@@ -108,6 +108,16 @@ return {
     end,
   },
 
+  {
+    "OXY2DEV/markview.nvim",
+    ft = { "markdown", "quarto", "rmd" },
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+    opts = {},
+  },
+
   -- clangd extensions: inlay hints, enhanced hover, etc.
   {
     "p00f/clangd_extensions.nvim",
